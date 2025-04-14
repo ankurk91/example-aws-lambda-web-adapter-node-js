@@ -1,0 +1,10 @@
+node_modules/
+*.log
+.git
+.github/
+.vscode/
+.idea/
+/dist/
+.dockerignore
+.env
+.env.example

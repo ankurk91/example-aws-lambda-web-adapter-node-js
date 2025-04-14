@@ -1,0 +1,53 @@
+name: deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+
+  SanityChecks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+  Deployment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [ SanityChecks ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build docker image
+        uses: docker/build-push-action@v6
+        with:
+          provenance: false
+          platforms: linux/amd64
+          context: .
+          push: false
