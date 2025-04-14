@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    /* Basic Settings */
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "ES2022",
+    // Node.js 18+ supports ES2022 fully
+    "module": "NodeNext",
+    // Modern Node.js ESM + CommonJS interop
+    "moduleResolution": "NodeNext",
+    // Better Node.js module resolution
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    /* Strict Type-Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Debugging & Optimization */
+    "sourceMap": true,
+    // Helps with debugging
+    "inlineSources": true,
+    // Embeds sources in source maps
+    "declaration": false,
+    // Generates .d.ts files
+    "removeComments": false,
+    // Keep comments in production (helpful for logging)
+
+    /* Node.js & Backend-Specific */
+    "skipLibCheck": true,
+    // Faster builds (safe for backend)
+    "types": [
+      "node"
+    ],
+    // Only include Node.js types (no browser libs)
+    "allowSyntheticDefaultImports": true,
+    // Better CommonJS interop
+    "resolveJsonModule": true
+    // Allows importing JSON files
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.json"
+    // If using JSON imports
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    // Exclude test files (if using separate config)
+    "**/*.spec.ts"
+  ]
+}
